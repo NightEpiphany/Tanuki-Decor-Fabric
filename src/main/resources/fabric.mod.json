@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "tanukidecor",
+	"version": "${version}",
+	"name": "TanukiDecor",
+	"description": "Large furniture mod inspired by Animal Crossing",
+	"authors": [
+		"skyjay1","NightEpiphany"
+	],
+	"license": "GNU LGPLv3",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.moigferdsrte.tanukidecor.TanukiDecorFabric"
+		],
+		"client": [
+			"com.moigferdsrte.tanukidecor.TanukiDecorFabricClient"
+		]
+	},
+	"mixins": ["tanukidecor.mixins.json"],
+	"accessWidener": "ovo.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.18.1",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
