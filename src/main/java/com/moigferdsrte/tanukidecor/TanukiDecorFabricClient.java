@@ -1,5 +1,7 @@
 package com.moigferdsrte.tanukidecor;
 
+import com.moigferdsrte.tanukidecor.block.misc.RocketLampBlock;
+import com.moigferdsrte.tanukidecor.block.misc.SciencePodBlock;
 import com.moigferdsrte.tanukidecor.client.TDClientEvents;
 import com.moigferdsrte.tanukidecor.client.blockentity.clock.*;
 import com.moigferdsrte.tanukidecor.client.blockentity.misc.*;
@@ -64,6 +66,12 @@ public class TanukiDecorFabricClient implements ClientModInitializer {
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.SLOT_MACHINE, SlotMachineBER::new);
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.TRAIN_SET, TrainSetBER::new);
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.PLASMA_BALL, PlasmaBallBER::new);
-        TDRegistry.BlockReg.ALL_BLOCKS.forEach(block -> BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout()));
+        TDRegistry.BlockReg.ALL_BLOCKS.forEach(block -> {
+            if (block instanceof RocketLampBlock || block instanceof SciencePodBlock) {
+                BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.translucent());
+                return;
+            }
+            BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
+        } );
     }
 }

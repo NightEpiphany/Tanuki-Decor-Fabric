@@ -50,7 +50,6 @@ public record ServerBoundSelectDIYRecipePacket(ResourceLocation recipeId) implem
      */
     public static void handle(final ServerBoundSelectDIYRecipePacket payload, ServerPlayNetworking.Context ctx) {
         ServerPlayer player = ctx.player();
-        System.out.println(111);
             // validate menu
             if (!(player.containerMenu instanceof DIYWorkbenchMenu menu)) {
                 return;

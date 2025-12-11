@@ -96,11 +96,12 @@ public class DIYWorkbenchScreen extends AbstractContainerScreen<DIYWorkbenchMenu
         this.editBox.setBordered(false);
         this.editBox.setMaxLength(70);
         this.editBox.setValue("");
-        this.editBox.setResponder(s -> updateRecipes(s));
+        this.editBox.setResponder(this::updateRecipes);
         this.setInitialFocus(this.editBox);
         // recipe buttons
         this.recipeButtons.clear();
         final Button.OnPress recipeButtonOnPress = b -> getMenu().selectRecipe(((DIYRecipeButton) b).getRecipeHolder());
+        assert this.minecraft != null;
         final ItemRenderer itemRenderer = this.minecraft.getItemRenderer();
         for (int i = 0, x = this.leftPos + RECIPE_X, y = this.topPos + RECIPE_Y; i < RECIPE_BUTTON_COUNT_Y; i++) {
             this.recipeButtons.add(this.addRenderableWidget(new DIYRecipeButton(x, y + i * DIYRecipeButton.HEIGHT, itemRenderer, this.font, recipeButtonOnPress)));
