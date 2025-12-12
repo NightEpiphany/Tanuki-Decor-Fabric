@@ -6,6 +6,7 @@
 
 package com.moigferdsrte.tanukidecor.block.bed;
 
+import com.moigferdsrte.tanukidecor.block.api.IBlockExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
@@ -22,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public interface IBedProvider {
+public interface IBedProvider extends IBlockExtension {
 
     /**
      * @param level      the level

@@ -6,13 +6,13 @@
 
 package com.moigferdsrte.tanukidecor.block.clock;
 
+import com.moigferdsrte.tanukidecor.block.api.IBlockExtension;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-
-public interface IChimeProvider {
+public interface IChimeProvider extends IBlockExtension {
 
     long DAWN = 10L;
     long NOON = 6000L;

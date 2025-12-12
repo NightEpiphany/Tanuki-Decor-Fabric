@@ -15,6 +15,9 @@
 		],
 		"client": [
 			"com.moigferdsrte.tanukidecor.TanukiDecorFabricClient"
+		],
+		"jei_mod_plugin": [
+			"com.moigferdsrte.tanukidecor.integration.TDJeiPlugin"
 		]
 	},
 	"mixins": ["tanukidecor.mixins.json"],

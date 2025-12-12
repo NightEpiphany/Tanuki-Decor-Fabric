@@ -27,7 +27,7 @@ public interface IBlockExtension {
         level.setBlock(pos, state.setValue(BedBlock.OCCUPIED, occupied), 3);
     }
 
-    default int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    default int getFlammability(BlockState state, BlockGetter level, BlockPos pos) {
         return ((FireBlock) Blocks.FIRE).getBurnOdds(state);
     }
 

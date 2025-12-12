@@ -27,10 +27,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class GorgeousBedBlock extends RotatingMultiblock implements IBedProvider, IBlockExtension {
+public class GorgeousBedBlock extends RotatingMultiblock implements IBedProvider {
 
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 
@@ -62,7 +63,7 @@ public class GorgeousBedBlock extends RotatingMultiblock implements IBedProvider
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         return useBed(pState, pLevel, pPos, pPlayer);
     }
 

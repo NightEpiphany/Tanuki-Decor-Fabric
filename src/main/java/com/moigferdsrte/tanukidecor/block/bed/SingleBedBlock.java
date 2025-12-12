@@ -30,8 +30,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-
-public class SingleBedBlock extends RotatingMultiblock implements IBedProvider, IBlockExtension {
+public abstract class SingleBedBlock extends RotatingMultiblock implements IBedProvider {
 
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
 

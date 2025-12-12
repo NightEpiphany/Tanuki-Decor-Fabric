@@ -26,7 +26,7 @@ public class FirewoodBlock extends RotatingBlock {
     }
 
     @Override
-    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos) {
         return state.getValue(WATERLOGGED) ? 0 : 20;
     }
 
