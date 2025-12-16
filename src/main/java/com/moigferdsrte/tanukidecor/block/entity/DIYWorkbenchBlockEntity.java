@@ -6,7 +6,10 @@
 
 package com.moigferdsrte.tanukidecor.block.entity;
 
+import com.moigferdsrte.tanukidecor.menu.PosData;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
@@ -21,7 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import com.moigferdsrte.tanukidecor.menu.DIYWorkbenchMenu;
 
-public class DIYWorkbenchBlockEntity extends StorageBlockEntity {
+public class DIYWorkbenchBlockEntity extends StorageBlockEntity implements ExtendedScreenHandlerFactory<PosData> {
 
     public static final Ingredient[] INGREDIENTS = new Ingredient[]{
             Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS),
@@ -64,5 +67,10 @@ public class DIYWorkbenchBlockEntity extends StorageBlockEntity {
     @Override
     public boolean canPlaceItem(int pIndex, ItemStack pStack) {
         return INGREDIENTS[Mth.clamp(pIndex, 0, INGREDIENTS.length - 1)].test(pStack);
+    }
+
+    @Override
+    public PosData getScreenOpeningData(ServerPlayer player) {
+       return new PosData(getBlockPos());
     }
 }

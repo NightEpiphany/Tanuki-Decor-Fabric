@@ -66,12 +66,13 @@ public class TanukiDecorFabricClient implements ClientModInitializer {
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.SLOT_MACHINE, SlotMachineBER::new);
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.TRAIN_SET, TrainSetBER::new);
         BlockEntityRenderers.register(TDRegistry.BlockEntityReg.PLASMA_BALL, PlasmaBallBER::new);
+
         TDRegistry.BlockReg.ALL_BLOCKS.forEach(block -> {
             if (block instanceof RocketLampBlock || block instanceof SciencePodBlock) {
                 BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.translucent());
                 return;
             }
             BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
-        } );
+        });
     }
 }

@@ -18,11 +18,13 @@ import com.moigferdsrte.tanukidecor.block.storage.*;
 import com.moigferdsrte.tanukidecor.item.MultiblockItem;
 import com.moigferdsrte.tanukidecor.item.WallMultiblockItem;
 import com.moigferdsrte.tanukidecor.menu.DIYWorkbenchMenu;
+import com.moigferdsrte.tanukidecor.menu.PosData;
 import com.moigferdsrte.tanukidecor.recipe.DIYRecipe;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -401,7 +403,7 @@ public final class TDRegistry {
         public static final Block EGYPTIAN_TABLE = registerWithItem("egyptian_table", () ->
                 new EgyptianTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).noOcclusion().strength(2.0F, 10.0F)));
         public static final Block FIREWOOD = registerWithItem("firewood", () ->
-                new FirewoodBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).sound(SoundType.WOOD).noOcclusion().strength(1.5F, 1.5F)));
+                new FirewoodBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).sound(SoundType.WOOD).noOcclusion().strength(1.5F, 1.5F).ignitedByLava()));
         public static final Block GREEN_COUNTER = registerWithItem("green_counter", () ->
                 new GreenCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).sound(SoundType.WOOD).noOcclusion().strength(2.0F, 10.0F)));
         public static final Block GREEN_TABLE = registerWithMultiblockItem("green_table", () ->
@@ -953,16 +955,16 @@ public final class TDRegistry {
 
     public static final class MenuReg {
 
+        public static final ExtendedScreenHandlerType<DIYWorkbenchMenu, PosData> DIY_WORKBENCH = new ExtendedScreenHandlerType<>((i, inv, data) ->
+                new DIYWorkbenchMenu(i, inv, inv.player.blockPosition(), (Container) inv.player.level().getBlockEntity(data.pos())), PosData.STREAM_CODEC);
+
         /**
          * Forces initialization of this class and all its static fields.
          * Called during mod initialization to ensure all menu types are registered.
          */
         public static void init() {
             // Method intentionally empty - the act of calling it triggers class initialization
+            Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(MODID, "diy_workbench"), DIY_WORKBENCH);
         }
-
-        public static final MenuType<DIYWorkbenchMenu> DIY_WORKBENCH = Registry.register(BuiltInRegistries.MENU, ResourceLocation.fromNamespaceAndPath(MODID, "diy_workbench"),
-                new MenuType<>((i, inv) -> new DIYWorkbenchMenu(i, inv, inv.player.blockPosition(), (Container) inv.player.level().getBlockEntity(TanukiDecorFabric.CURRENT_POS)), FeatureFlags.VANILLA_SET)
-        );
     }
 }

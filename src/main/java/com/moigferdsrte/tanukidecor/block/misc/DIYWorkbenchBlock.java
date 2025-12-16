@@ -10,6 +10,7 @@ import com.moigferdsrte.tanukidecor.block.entity.StorageDelegateBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -54,6 +55,7 @@ public class DIYWorkbenchBlock extends RotatingTallBlock implements EntityBlock 
     @Override
     protected @NotNull InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (pLevel.isClientSide()) {
+            pPlayer.swing(InteractionHand.MAIN_HAND);
             return InteractionResult.SUCCESS;
         }
         // check config settings

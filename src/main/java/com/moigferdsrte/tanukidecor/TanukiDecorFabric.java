@@ -23,15 +23,8 @@ public class TanukiDecorFabric implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static BlockPos CURRENT_POS = BlockPos.ZERO;
-
 	@Override
 	public void onInitialize() {
-		IEvent.CALLBACK.register(e -> {
-			if (e instanceof PlayerClickPosEvent(BlockPos pos)) {
-				CURRENT_POS = pos;
-			}
-		});
 		AutoConfig.register(TDConfig.class, GsonConfigSerializer::new);
 		configHolder = AutoConfig.getConfigHolder(TDConfig.class);
 		CONFIG = configHolder.getConfig();
